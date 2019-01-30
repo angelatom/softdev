@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    #slate {border: 1px solid black}
+  </style>
+  <div>
+    <canvas height="600" width="600" id="slate">   
+    </canvas>
+    <br>
+    <button id="clear">Clear</button>
+    <button id="toggle">Toggle</button>
+  </div>
+  <script src="clickdraw.js"></script>
+</html>
