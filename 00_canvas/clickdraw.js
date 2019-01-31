@@ -4,7 +4,7 @@
 // 2019-01-30
 
 
-var box = true;
+var box = 0; // 0 for box and 1 for dot
 
 var canvas = document.getElementById("slate");
 var ctx = canvas.getContext("2d");
@@ -18,16 +18,15 @@ var drawRect = function(x,y) {
 
 // Clear canvas
 var clear = function() {
-    //ctx.fillStyle = "white";
-    ctx.clearRect(0,0,600,600);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
 };
 
 // Toggle between box or dot
 var toggle = function() {
-    if (box){
-        box = false;
+    if (box == 0){
+        box = 1;
     } else {
-        box = true;
+        box = 0;
     }
     //console.log(box);
 };
@@ -44,7 +43,7 @@ var drawDot = function(x,y) {
 canvas.addEventListener('click', function(e) {
     x = e.offsetX;
     y = e.offsetY;
-    if(box){
+    if(box == 0){
         //console.log("boxxxxx")
         drawRect(x,y);
     } else {
