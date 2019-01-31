@@ -1,8 +1,0 @@
-var box;
-var dot;
-
-canvas = document.getElementByID("slate");
-ctx = canvas.getContext("2d");
-
-ctx.fillStyle= "#00ff00";
-ctx.fillRect(50,50,100,100);
