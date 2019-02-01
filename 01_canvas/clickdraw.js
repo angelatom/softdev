@@ -39,7 +39,7 @@ canvas.addEventListener('click', function(e) {
 	ctx.fill();
 	ctx.stroke();
     }
-     e//.preventDefault();
+    
 } );
 
 var clear_button = document.getElementById("clear");
