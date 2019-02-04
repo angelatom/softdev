@@ -9,19 +9,30 @@ var ctx = canvas.getContext("2d");
 var requestID;
 var radius = 0;
 var growing = true;
+var drawing = false;
+
 
 // Clear canvas
 var stopIt = function() {
-	cancelAnimationFrame(requestID);
+	drawing = false;
+	window.cancelAnimationFrame(requestID);
 };
 
 var clear = function() {
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 }
 
+var draw = function() {
+	if (drawing == true){
+		return; // stop pressing more than once
+	}
+	drawing = true;
+	drawDot();
+}
+
 var drawDot = function() {
 	clear();
-	requestID = requestAnimationFrame(drawDot);
+	requestID = window.requestAnimationFrame(drawDot);
     console.log(requestID);
 	ctx.fillStyle = "black";
 	if (growing){
@@ -42,7 +53,7 @@ var drawDot = function() {
 }	
 
 var dotButton = document.getElementById("circle");
-dotButton.addEventListener('click', drawDot);
+dotButton.addEventListener('click', draw);
 
 var clear_button = document.getElementById("stop");
 clear_button.addEventListener('click', stopIt);
