@@ -1,25 +1,27 @@
 // thesky -- Angela Tom and Mai Rachlevsky
 // SoftDev2 pd7
-// K03 -- They lock us in the tower whenever we get caught
-// 2019-02-06
+// K04 -- What is it saving the screen from?
+// 2019-02-07
 
 var canvas = document.getElementById("playground");
 var ctx = canvas.getContext("2d");
-
 var requestID;
 var radius = 0;
 var growing = true;
+var rectX;
+var rectY;
+var rectWidth;
+var rectHeight;
+var velX;
+var velY;
 
 
-// Clear canvas
 var stopIt = function() {
     window.cancelAnimationFrame(requestID);
 };
-
 var clear = function() {
     ctx.clearRect(0,0,canvas.width,canvas.height);
 }
-
 var drawDot = function() {
     window.cancelAnimationFrame(requestID);
     clear();
@@ -42,48 +44,40 @@ var drawDot = function() {
     }
     //clear();
 }	
-
 var dvdLogoSetup = function() {
-    
+    //console.log("dvdsetupran");
+    rectWidth = 100;
+    rectHeight = 50;
+    rectX = Math.floor(Math.random() * (canvas.width - rectWidth));
+    rectY = Math.floor(Math.random() * (canvas.height - rectHeight));
+    xVel = 1;
+    yVel = 1;
     dvdRun()
 }
-
 var dvdRun = function() {
     window.cancelAnimationFrame(requestID);
     clear();
-    var rectWidth = 100;
-    var rectHeight = 50;
-
-    var rectX = Math.floor(Math.random() * (canvas.width - rectWidth));
-    var rectY = Math.floor(Math.random() * (canvas.height - rectHeight));
-
-    var xVel = 1;
-    var yVel = 1;
-    ctx.fillRect( rectX, rectY, rectWidth, rectHeight);
-
-    if (rectX == canvas.width || 0){
-	    xVel = xVel * -1;
+    var logo= new Image();
+    logo.src = "logo_dvd.jpg";
+    ctx.drawImage(logo, rectX, rectY, rectWidth, rectHeight);
+    if (rectX + rectWidth == canvas.width || rectX == 0){
+	xVel = xVel * -1;
     }
-
-    if (rectY == canvas.height || 0){
-	    xVel = xVel * -1;
+    if (rectY + rectHeight == canvas.height || rectY == 0){
+	yVel = yVel * -1;
     }
-
     rectX = rectX + xVel;
     rectY = rectY + yVel;
+    requestID = window.requestAnimationFrame(dvdRun);
 
-	requestID = window.requestAnimationFrame(dvdRun);
-	    //var logo = new Image();
-	    //logo.src = "logo_dvd.jpg";
-	    // ctx.drawImage(logo...)
-	    
 }
 
 var dotButton = document.getElementById("circle");
 dotButton.addEventListener('click', drawDot);
-
 var clear_button = document.getElementById("stop");
 clear_button.addEventListener('click', stopIt);
-
 var movie_button = document.getElementById("dvd");
 movie_button.addEventListener('click', dvdLogoSetup);
+
+
+

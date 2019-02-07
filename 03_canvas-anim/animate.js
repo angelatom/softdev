@@ -9,12 +9,10 @@ var ctx = canvas.getContext("2d");
 var requestID;
 var radius = 0;
 var growing = true;
-var drawing = false;
 
 
 // Clear canvas
 var stopIt = function() {
-	drawing = false;
 	window.cancelAnimationFrame(requestID);
 };
 
@@ -22,15 +20,9 @@ var clear = function() {
 	ctx.clearRect(0,0,canvas.width,canvas.height);
 }
 
-var draw = function() {
-	if (drawing == true){
-		return; // stop pressing more than once
-	}
-	drawing = true;
-	drawDot();
-}
 
 var drawDot = function() {
+	window.cancelAnimationFrame(requestID);
 	clear();
 	requestID = window.requestAnimationFrame(drawDot);
     console.log(requestID);
@@ -53,7 +45,7 @@ var drawDot = function() {
 }	
 
 var dotButton = document.getElementById("circle");
-dotButton.addEventListener('click', draw);
+dotButton.addEventListener('click', drawDot);
 
 var clear_button = document.getElementById("stop");
 clear_button.addEventListener('click', stopIt);
