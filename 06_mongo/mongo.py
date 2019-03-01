@@ -1,4 +1,4 @@
-# Angela Tom and Imad 
+# Angela Tom and Imad Belkebeer
 # SoftDev2 pd7
 # K06 -- Yummy Mongo Py
 # 2019-03-01
@@ -22,5 +22,5 @@ def find_zipgrade( zipcode, grade ):
 def find_zipscore( zipcode, score ):
     return collection.find({"$and": [{"address.zipcode":zipcode},{"grade.0.score": {"$lt": score} }]})
 
-def find_DunkinDonuts( zipcode ):
-    return collection.find({"$and" : [{"name":"Dunkin Donuts"},{"address.zipcode": zipcode}]})
+def find_zip_cuisine(zip,cuisine):
+    return db.restaurants.find({"$and" : [{"address.zipcode":zip},{"cuisine":cuisine}]})
