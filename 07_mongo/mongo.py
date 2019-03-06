@@ -3,12 +3,6 @@
 #K07 -- Import/Export Bank
 #2019-03-05
 
-'''
-
-The dataset is on the US population.
-
-'''
-
 import pymongo
 import json
 from pymongo import MongoClient
