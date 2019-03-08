@@ -46,7 +46,7 @@ def changeIP(ip):
 def search_age(age):
     a = collection.find({"age": age})
     for x in a:
-        print (x)
+        return x
 
 # searches for less than the number given
 def search_females(females):
