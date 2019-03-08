@@ -23,7 +23,7 @@ def ip():
 
 @app.route('/search')
 def search():
-    age = request.args["total"]
+    age = int(request.args["total"])
     ans = mongo.search_age(age)
     return render_template("index.html", result = ans)
 
