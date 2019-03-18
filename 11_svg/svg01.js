@@ -24,6 +24,8 @@ var redCircle = function(x, y) {
     circle.setAttribute("cx", x);
     circle.setAttribute("cy", y);
     circle.setAttribute("r", "15");
+    circle.setAttribute("xvel", 1);
+    circle.setAttribute("yvel", 1);
     circle.setAttribute("stroke", "black");
     circle.addEventListener("click", circleClick); // add event listener to the circle created
     pic.appendChild(circle); 
@@ -55,6 +57,7 @@ var circleClick = function(e) {
     rectY = rectY + yVel;
 */
 
+
 // move -- doesn't work
 var move = function() {
     moving = true;
@@ -62,15 +65,19 @@ var move = function() {
     for (var i = 0; i < pic.children.length; i++) {
         var c = pic.children[i];
         var r = parseInt(c.getAttribute("r"));
-        var xvel = 1;
-        var yvel = 1;
+        var xvel = parseInt(c.getAttribute("xvel"));
+        var yvel = parseInt(c.getAttribute("yvel"));
         var cx = parseInt(c.getAttribute("cx")) + xvel;
         var cy = parseInt(c.getAttribute("cy")) + yvel;
-        if ((cx + r) > pic.getAttribute("width") || cx < r) {
-            xvel = xvel * -1;
+        if ((cx + r) > 500 || cx < r) {
+            xvel *= -1;
+            cx = parseInt(c.getAttribute("cx")) + xvel;
+            c.setAttribute("xvel", xvel);
         }
-        if ((cy + r) > pic.getAttribute("height") || cy < r) {
-            yvel = yvel * -1;
+        if ((cy + r) > 500 || cy < r) {
+            yvel *= -1;
+            cy = parseInt(c.getAttribute("cy")) + yvel;
+            c.setAttribute("yvel", yvel);
         }
         console.log(pic.getAttribute("width"))
         console.log(cx)
