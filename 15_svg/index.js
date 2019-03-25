@@ -31,18 +31,18 @@ var h = 500;
 
 var svg = d3.select("body")
   .append("svg")
-  .attr("width", w)
-  .attr("height", h);
+  .attr("width", w + 50)
+  .attr("height", h + 50);
 
 svg.selectAll("circle")
   .data(dataset)
   .enter()
   .append("circle")
   .attr("cx", function(d) {
-    return d[0] * 20;
+    return d[0] * 20 + 50;
   })
   .attr("cy", function(d) {
-    return h - (d[1] * 10 + 7);
+    return h - (d[1] * 10 + 50);
   })
   .attr("r", function(d) {
     return 5;
@@ -53,10 +53,10 @@ svg.selectAll("text")
   .enter()
   .append("text")
   .attr("x", function(d) {
-    return d[0] * 20;
+    return d[0] * 20 + 50;
   })
   .attr("y", function(d) {
-    return h - (d[1] * 10);
+    return h - (d[1] * 10 + 50);
   })
   .text(function(d) {
     return d[0] + "," + d[1];
@@ -65,15 +65,37 @@ svg.selectAll("text")
   .attr("fill", "red");
   
 svg.append("line")
-  .attr('x1', 0)
+  .attr('x1', 50)
   .attr('y1', h)
-  .attr('x2', w)
+  .attr('x2', w + 50)
   .attr('y2', h)
   .attr('stroke', "#000000");
 
 svg.append("line")
-  .attr('x1', 0)
-  .attr('y1', 0)
-  .attr('x2', 0)
+  .attr('x1', 50)
+  .attr('y1', 50)
+  .attr('x2', 50)
   .attr('y2', h)
   .attr('stroke', "#000000");
+
+svg.append('text') 
+  .attr('x', 250)
+  .attr('y', 25)
+  .attr('text-anchor','middle')
+  .style('font-size', '20px')
+  .text("Salem Accusations");
+
+svg.append('text') 
+    .attr('x', 250)
+    .attr('y', h - 25)
+    .attr('text-anchor','middle')
+    .style('font-size', '14px')
+    .text("Months");
+
+svg.append('text') 
+    .attr('transform', "rotate(-90)")
+    .attr('x', -250)
+    .attr('y', 50)
+    .attr('text-anchor','middle')
+    .style('font-size', '14px')
+    .text("Accusations");
