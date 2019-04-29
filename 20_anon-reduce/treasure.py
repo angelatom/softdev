@@ -1,5 +1,8 @@
 '''
 Reduction_Production-- Angela Tom, Imad Belkebeer
+SoftDev2 pd7
+K20 -- Reductio ad Absurdum
+2019-04-29
 '''
 from functools import reduce
 import string
